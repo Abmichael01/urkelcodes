@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div>
+            <h2>UrkelCodes</h2>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <p class="menu">☵</p>
+        <div class="overlay hide"></div>
+    </header>
+
+    <main>
+        <div class="contact">
+            <form action="">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" class="input" id="name" name="name" autocomplete="off">
+                    <p class="error-txt">Name can't be blank</p>
+                </div>
+        
+                <div>
+                    <label for="email">Email</label>
+                    <input type="text" class="input" id="email" name="email" autocomplete="off">
+                    <p class="error-txt email">Email Address can't be blank</p>
+                </div>
+
+                <div>
+                    <label for="email">Phone Number</label>
+                    <input type="number" class="input" id="phone" name="phone" autocomplete="off">
+                    <p class="error-txt">Phone Number can't be blank</p>
+                </div>
+        
+                <div>
+                    <label for="message">Message</label>
+                    <textarea id="message" class="input" cols="30" rows="6"></textarea>
+                    <p class="error-txt">Message can't be blank</p>
+                </div>
+        
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        
+    </main>
+    <script src="script.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const form = document.querySelector("form")
+        const name = document.querySelector("#name")
+        const email = document.querySelector("#email")
+        const phone = document.querySelector("#phone")
+        const message = document.querySelector("#message")
+
+        function sendEmail(){
+            const bodyMessage = "Name: " + name.value  + "<br> Email: " + email.value + "<br> Phone Number: " + phone.value + "<br> Message: " + message.value
+
+            Email.send({
+                SecureToken : "25336dbb-6032-4a6d-92c5-3448210ca1dc",
+                Host : "smtp.elasticemail.com",
+                Username : "urkelcodes7@gmail.com",
+                Password : "90A4942ACBACE29964F1A27D9D2F5CA62341",
+                To : 'urkelcodes7@gmail.com',
+                From : "urkelcodes7@gmail.com",
+                Subject : "New Message From Your Portfolio",
+                Body : bodyMessage
+            }).then(
+                message => {
+                    if(message == "OK"){
+                        Swal.fire({
+                            title: "Success!",
+                            text: "Message was sent successfully!",
+                            icon: "success"
+                            });
+                    }
+                });
+        }
+
+
+        function checkInputs(){
+            const inputs = document.querySelectorAll(".input")
+
+            for(const input of inputs){
+                if(input.value == ""){
+                    input.classList.add("error")
+                    input.parentElement.classList.add("error")
+                    
+                }
+
+                if (inputs[1].value != "" ){
+                    checkEmail();
+                }
+
+                inputs[1].addEventListener("keyup", ()=>{
+                    checkEmail()
+                })
+
+                input.addEventListener("keyup", ()=>{
+                    if(input.value != ""){
+                        input.classList.remove("error")
+                        input.parentElement.classList.remove("error")
+                    }else{
+                        input.classList.add("error")
+                        input.parentElement.classList.add("error")
+                        
+                    }
+                })
+            }
+        }
+
+        function checkEmail(){
+            const emailRegex = /^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,3})(\.[a-z]{2,3})?$/;
+
+            const errorTxtEmail = document.querySelector(".error-txt.email")
+
+            if (!email.value.match(emailRegex)){
+                email.classList.add("error")
+                email.parentElement.classList.add('error')
+
+                if (email.value != ""){
+                    errorTxtEmail.innerText = "Enter a valid email address"
+                }else{
+                    errorTxtEmail.innerText = "Email Address cant be blank"
+                }
+
+            }else{
+                email.classList.remove("error")
+                email.parentElement.classList.remove('error')
+            }
+        }
+
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            checkInputs()
+
+            if(!name.classList.contains("error") && !email.classList.contains("error") && !phone.classList.contains("error") && !message.classList.contains("error")){
+                sendEmail()
+
+                form.reset()
+                return false
+            }
+            
+        })
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,272 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    
+    background: radial-gradient(circle, rgba(25, 42, 86, 1) 0%, rgba(12, 21, 45, 1) 100%);
+}
+
+body::-webkit-scrollbar{
+    width: 5px;
+}
+
+body::-webkit-scrollbar-thumb{
+    background-color: #b3e0ff;
+    border-radius: 3px;
+}
+
+body::-webkit-scrollbar-track{
+    background-color: #315a84;
+}
+
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    z-index: 10;
+}
+
+header h2 {
+    font-size: 30px;
+    color: #b3e0ff;
+}
+
+nav{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    
+}
+
+nav a{
+    font-size: 20px;
+    color: #fff;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover{
+    color: #b3e0ff;
+}
+
+main{
+    padding: 0px 5%;
+}
+
+.menu{
+    font-size: 30px;
+    color: #b3e0ff;
+    display: none;
+}
+
+.overlay{
+    display: none;
+}
+
+
+
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    padding: 100px 0px;
+    padding-bottom: 50px;
+}
+
+
+.contact form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact div{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form{
+    width: 60%;
+}
+
+
+.error-txt{
+    display: none;
+    font: 17px;
+    color: rgb(239, 75, 49);
+    margin-top: -5px; 
+}
+
+div.error .input{
+    
+    border-color: rgb(239, 75, 49);
+}
+
+div.error .error-txt{
+    display: block;
+    
+}
+
+form label{
+    font-size: 20px;
+    color: white;
+}
+
+form input{
+    padding: 8px 15px;
+    background: transparent;
+    border: 2px solid #b3e0ff;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+form textarea{
+    padding: 8px 15px;
+    background: transparent;
+    border: 2px solid #b3e0ff;
+    outline: none;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+
+
+form button{
+    padding: 10px 20px;
+    background-color: #b3e0ff;
+    color: #39465e;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px #b3e0ff;
+    transition: .5s;
+}
+
+form button:hover{
+    box-shadow: none;
+}
+
+
+.hide{
+    display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+    
+    form{
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    form{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    form{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    form{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 786px) {
+    .menu{
+        display: block;
+        cursor: pointer;
+    }
+
+    .overlay{
+        display: block;
+    }
+
+    .overlay{
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    .no-scroll{
+        overflow: hidden;
+    }
+
+    .toggle-nav{
+        display: flex;
+        padding: 0px 30px;
+        padding-top: 30px;
+        flex-direction: column;
+        position: fixed;
+        top: 100%;
+        right: 0;
+        width: 50%;
+        height: 100vh;
+        backdrop-filter: blur(10px);
+        background: rgb(25, 45, 96);
+        z-index: 2;
+    }
+
+    nav{
+        display: none;
+        transition: 1s;
+    }
+
+    nav a{
+        font-size: 25px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    nav a:hover{
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+@media screen and (max-width: 270px){
+
+    header{
+      padding: 10px 2%;
+    }
+  
+    header h2{
+      font-size: 20px;
+    }
+  
+    .menu{
+      font-size: 20px;
+    }
+  }
+
+
